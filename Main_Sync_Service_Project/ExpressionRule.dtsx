@@ -1,0 +1,1645 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/24/2022 3:46:53 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="AZ-VDI-D1-193"
+  DTS:CreatorName="TMG\shivani.shinde"
+  DTS:DTSID="{B2F6A28B-E611-40A1-9258-EFC7528BB3EB}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.521.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{08813794-D2EA-4C22-BB41-3AD88F344A3C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9FDA6590-C6A7-4812-850F-31F5DCC1A70F}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;select * from [UI].DocumentRuleEventMap where DocumentRuleID = &quot; + (DT_STR,10,1252)  &#xA;@[$Project::ExpressionRule]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DocRuleEventMapQuery">
+      <DTS:VariableValue
+        DTS:DataType="8">select * from [UI].DocumentRuleEventMap where DocumentRuleID = 0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4B16F36E-3EE9-428C-A1D3-83F914EB9810}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;select * from ui.DocumentRule where &#xA;DocumentRuleID = &quot; + (DT_STR,10,1252) @[$Project::ExpressionRule] + &quot;and FormDesignId = &quot; + (DT_STR,10,1252)  @[$Project::FormDesignId]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DocumentRuleQuery">
+      <DTS:VariableValue
+        DTS:DataType="8">select * from ui.DocumentRule where 
+DocumentRuleID = 0and FormDesignId = 4354</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{275EAB65-DE75-4FFC-AF3B-35C80C877BFE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="IsPresent">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7F06BE48-069C-451A-B2E4-388EE724E6D8}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;exec [sync].[ExistDocumentRuleEventMapId] &quot; + (DT_STR,10,1252)   @[$Project::ExpressionRule]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SP_DeleteDREMID">
+      <DTS:VariableValue
+        DTS:DataType="8">exec [sync].[ExistDocumentRuleEventMapId] 0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{12D71DFE-C7C6-4037-92A6-D3C22BF2DB31}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;exec [sync].[ExistDoctRuleIdExpRule] &quot; + (DT_STR,10,1252)  @[$Project::ExpressionRule] + &quot;,&quot; + (DT_STR,10,1252)  @[$Project::FormDesignId]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SP_DeleteDRIDER">
+      <DTS:VariableValue
+        DTS:DataType="8">exec [sync].[ExistDoctRuleIdExpRule] 0,4354</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT_DocRuleEventMap"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3A9AB638-A614-4EEF-A0E8-CAE53766C286}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_DocRuleEventMap"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLEDB_DocumentRuleEventMapDST"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[UI].[DocumentRuleEventMap]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Connections[OleDbConnection]"
+                  connectionManagerID="{2AE1A09A-C445-43E4-8576-5C73E2BAA904}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AZ-VDI-D1-193.eBS4_INT_QA2]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].Columns[DocumentRuleEventMapID]"
+                      cachedDataType="i4"
+                      cachedName="DocumentRuleEventMapID"
+                      externalMetadataColumnId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].ExternalColumns[DocumentRuleEventMapID]"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[DocumentRuleEventMapID]" />
+                    <inputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].Columns[DocumentRuleID]"
+                      cachedDataType="i4"
+                      cachedName="DocumentRuleID"
+                      externalMetadataColumnId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].ExternalColumns[DocumentRuleID]"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[DocumentRuleID]" />
+                    <inputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].Columns[DocumentRuleEventTypeID]"
+                      cachedDataType="i4"
+                      cachedName="DocumentRuleEventTypeID"
+                      externalMetadataColumnId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].ExternalColumns[DocumentRuleEventTypeID]"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[DocumentRuleEventTypeID]" />
+                    <inputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].Columns[MigrationID]"
+                      cachedDataType="i4"
+                      cachedName="MigrationID"
+                      externalMetadataColumnId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].ExternalColumns[MigrationID]"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[MigrationID]" />
+                    <inputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].Columns[IsMigrated]"
+                      cachedDataType="i4"
+                      cachedName="IsMigrated"
+                      externalMetadataColumnId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].ExternalColumns[IsMigrated]"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[IsMigrated]" />
+                    <inputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].Columns[IsMigrationOverriden]"
+                      cachedDataType="i4"
+                      cachedName="IsMigrationOverriden"
+                      externalMetadataColumnId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].ExternalColumns[IsMigrationOverriden]"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[IsMigrationOverriden]" />
+                    <inputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].Columns[MigrationDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="MigrationDate"
+                      externalMetadataColumnId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].ExternalColumns[MigrationDate]"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[MigrationDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].ExternalColumns[DocumentRuleEventMapID]"
+                      dataType="i4"
+                      name="DocumentRuleEventMapID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].ExternalColumns[DocumentRuleID]"
+                      dataType="i4"
+                      name="DocumentRuleID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].ExternalColumns[DocumentRuleEventTypeID]"
+                      dataType="i4"
+                      name="DocumentRuleEventTypeID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].ExternalColumns[MigrationID]"
+                      dataType="i4"
+                      name="MigrationID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].ExternalColumns[IsMigrated]"
+                      dataType="i4"
+                      name="IsMigrated" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].ExternalColumns[IsMigrationOverriden]"
+                      dataType="i4"
+                      name="IsMigrationOverriden" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input].ExternalColumns[MigrationDate]"
+                      dataType="dbTimeStamp"
+                      name="MigrationDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLEDB_DocumentRuleEventMapSRC"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [UI].DocumentRuleEventMap where DocumentRuleID = 12364</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable">User::DocRuleEventMapQuery</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Connections[OleDbConnection]"
+                  connectionManagerID="{7788E99E-421E-433E-B3D9-9E2A99E7271B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AZ-VDI-D1-244.eBS4_INT_QA2.sa1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[DocumentRuleEventMapID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].ExternalColumns[DocumentRuleEventMapID]"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[DocumentRuleEventMapID]"
+                      name="DocumentRuleEventMapID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[DocumentRuleID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].ExternalColumns[DocumentRuleID]"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[DocumentRuleID]"
+                      name="DocumentRuleID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[DocumentRuleEventTypeID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].ExternalColumns[DocumentRuleEventTypeID]"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[DocumentRuleEventTypeID]"
+                      name="DocumentRuleEventTypeID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[MigrationID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].ExternalColumns[MigrationID]"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[MigrationID]"
+                      name="MigrationID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[IsMigrated]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].ExternalColumns[IsMigrated]"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[IsMigrated]"
+                      name="IsMigrated"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[IsMigrationOverriden]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].ExternalColumns[IsMigrationOverriden]"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[IsMigrationOverriden]"
+                      name="IsMigrationOverriden"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[MigrationDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].ExternalColumns[MigrationDate]"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].Columns[MigrationDate]"
+                      name="MigrationDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].ExternalColumns[DocumentRuleEventMapID]"
+                      dataType="i4"
+                      name="DocumentRuleEventMapID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].ExternalColumns[DocumentRuleID]"
+                      dataType="i4"
+                      name="DocumentRuleID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].ExternalColumns[DocumentRuleEventTypeID]"
+                      dataType="i4"
+                      name="DocumentRuleEventTypeID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].ExternalColumns[MigrationID]"
+                      dataType="i4"
+                      name="MigrationID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].ExternalColumns[IsMigrated]"
+                      dataType="i4"
+                      name="IsMigrated" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].ExternalColumns[IsMigrationOverriden]"
+                      dataType="i4"
+                      name="IsMigrationOverriden" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output].ExternalColumns[MigrationDate]"
+                      dataType="dbTimeStamp"
+                      name="MigrationDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Error Output].Columns[DocumentRuleEventMapID]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Error Output].Columns[DocumentRuleEventMapID]"
+                      name="DocumentRuleEventMapID" />
+                    <outputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Error Output].Columns[DocumentRuleID]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Error Output].Columns[DocumentRuleID]"
+                      name="DocumentRuleID" />
+                    <outputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Error Output].Columns[DocumentRuleEventTypeID]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Error Output].Columns[DocumentRuleEventTypeID]"
+                      name="DocumentRuleEventTypeID" />
+                    <outputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Error Output].Columns[MigrationID]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Error Output].Columns[MigrationID]"
+                      name="MigrationID" />
+                    <outputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Error Output].Columns[IsMigrated]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Error Output].Columns[IsMigrated]"
+                      name="IsMigrated" />
+                    <outputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Error Output].Columns[IsMigrationOverriden]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Error Output].Columns[IsMigrationOverriden]"
+                      name="IsMigrationOverriden" />
+                    <outputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Error Output].Columns[MigrationDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Error Output].Columns[MigrationDate]"
+                      name="MigrationDate" />
+                    <outputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_DocRuleEventMap.Paths[OLE DB Source Output]"
+              endId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DFT_To_Copy_DocRule"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7bd7461e-cf7a-442d-9d1f-6656c61bebbf}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_To_Copy_DocRule"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLEDB_DocumentRuleDST"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[UI].[DocumentRule]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Connections[OleDbConnection]"
+                  connectionManagerID="{2AE1A09A-C445-43E4-8576-5C73E2BAA904}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AZ-VDI-D1-193.eBS4_INT_QA2]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[FormDesignVersionID]"
+                      cachedDataType="i4"
+                      cachedName="FormDesignVersionID"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[FormDesignVersionID]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[FormDesignVersionID]" />
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[FormDesignID]"
+                      cachedDataType="i4"
+                      cachedName="FormDesignID"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[FormDesignID]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[FormDesignID]" />
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[AddedBy]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="AddedBy"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[AddedBy]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[AddedBy]"
+                      name="AddedBy" />
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[AddedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="AddedDate"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[AddedDate]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[AddedDate]" />
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[UpdatedBy]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="UpdatedBy"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[UpdatedBy]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[UpdatedBy]" />
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[UpdatedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="UpdatedDate"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[UpdatedDate]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[UpdatedDate]" />
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[MigrationID]"
+                      cachedDataType="i4"
+                      cachedName="MigrationID"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[MigrationID]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[MigrationID]" />
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[IsMigrated]"
+                      cachedDataType="i4"
+                      cachedName="IsMigrated"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[IsMigrated]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[IsMigrated]" />
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[IsMigrationOverriden]"
+                      cachedDataType="i4"
+                      cachedName="IsMigrationOverriden"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[IsMigrationOverriden]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[IsMigrationOverriden]" />
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[MigrationDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="MigrationDate"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[MigrationDate]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[MigrationDate]" />
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[DocumentRuleID]"
+                      cachedDataType="i4"
+                      cachedName="DocumentRuleID"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[DocumentRuleID]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[DocumentRuleID]" />
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[DisplayText]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5000"
+                      cachedName="DisplayText"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[DisplayText]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[DisplayText]" />
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[Description]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5000"
+                      cachedName="Description"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[Description]" />
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[IsActive]"
+                      cachedDataType="bool"
+                      cachedName="IsActive"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[IsActive]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[IsActive]" />
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[DocumentRuleTypeID]"
+                      cachedDataType="i4"
+                      cachedName="DocumentRuleTypeID"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[DocumentRuleTypeID]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[DocumentRuleTypeID]" />
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[DocumentRuleTargetTypeID]"
+                      cachedDataType="i4"
+                      cachedName="DocumentRuleTargetTypeID"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[DocumentRuleTargetTypeID]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[DocumentRuleTargetTypeID]" />
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[RuleJSON]"
+                      cachedCodepage="1252"
+                      cachedDataType="text"
+                      cachedName="RuleJSON"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[RuleJSON]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[RuleJSON]" />
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[TargetUIElementID]"
+                      cachedDataType="i4"
+                      cachedName="TargetUIElementID"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[TargetUIElementID]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[TargetUIElementID]" />
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[TargetElementPath]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1000"
+                      cachedName="TargetElementPath"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[TargetElementPath]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[TargetElementPath]" />
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[CompiledRuleJSON]"
+                      cachedCodepage="1252"
+                      cachedDataType="text"
+                      cachedName="CompiledRuleJSON"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[CompiledRuleJSON]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[CompiledRuleJSON]" />
+                    <inputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].Columns[IsStandard]"
+                      cachedDataType="bool"
+                      cachedName="IsStandard"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[IsStandard]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[IsStandard]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[DocumentRuleID]"
+                      dataType="i4"
+                      name="DocumentRuleID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[DisplayText]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5000"
+                      name="DisplayText" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5000"
+                      name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[AddedBy]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="AddedBy" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[AddedDate]"
+                      dataType="dbTimeStamp"
+                      name="AddedDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[UpdatedBy]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="UpdatedBy" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[UpdatedDate]"
+                      dataType="dbTimeStamp"
+                      name="UpdatedDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[IsActive]"
+                      dataType="bool"
+                      name="IsActive" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[DocumentRuleTypeID]"
+                      dataType="i4"
+                      name="DocumentRuleTypeID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[DocumentRuleTargetTypeID]"
+                      dataType="i4"
+                      name="DocumentRuleTargetTypeID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[RuleJSON]"
+                      codePage="1252"
+                      dataType="text"
+                      name="RuleJSON" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[FormDesignID]"
+                      dataType="i4"
+                      name="FormDesignID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[FormDesignVersionID]"
+                      dataType="i4"
+                      name="FormDesignVersionID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[TargetUIElementID]"
+                      dataType="i4"
+                      name="TargetUIElementID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[TargetElementPath]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="TargetElementPath" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[CompiledRuleJSON]"
+                      codePage="1252"
+                      dataType="text"
+                      name="CompiledRuleJSON" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[MigrationID]"
+                      dataType="i4"
+                      name="MigrationID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[IsMigrated]"
+                      dataType="i4"
+                      name="IsMigrated" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[IsMigrationOverriden]"
+                      dataType="i4"
+                      name="IsMigrationOverriden" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[MigrationDate]"
+                      dataType="dbTimeStamp"
+                      name="MigrationDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input].ExternalColumns[IsStandard]"
+                      dataType="bool"
+                      name="IsStandard" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLEDB_DocumentRuleSRC"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from ui.DocumentRule where 
+DocumentRuleID = 12363 and FormDesignId = 4311</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable">User::DocumentRuleQuery</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Connections[OleDbConnection]"
+                  connectionManagerID="{7788E99E-421E-433E-B3D9-9E2A99E7271B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AZ-VDI-D1-244.eBS4_INT_QA2.sa1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[FormDesignVersionID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[FormDesignVersionID]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[FormDesignVersionID]"
+                      name="FormDesignVersionID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[FormDesignID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[FormDesignID]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[FormDesignID]"
+                      name="FormDesignID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[AddedBy]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[AddedBy]"
+                      length="20"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[AddedBy]"
+                      name="AddedBy"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[AddedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[AddedDate]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[AddedDate]"
+                      name="AddedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[UpdatedBy]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[UpdatedBy]"
+                      length="20"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[UpdatedBy]"
+                      name="UpdatedBy"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[UpdatedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[UpdatedDate]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[UpdatedDate]"
+                      name="UpdatedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[MigrationID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[MigrationID]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[MigrationID]"
+                      name="MigrationID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[IsMigrated]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[IsMigrated]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[IsMigrated]"
+                      name="IsMigrated"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[IsMigrationOverriden]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[IsMigrationOverriden]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[IsMigrationOverriden]"
+                      name="IsMigrationOverriden"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[MigrationDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[MigrationDate]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[MigrationDate]"
+                      name="MigrationDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[DocumentRuleID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[DocumentRuleID]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[DocumentRuleID]"
+                      name="DocumentRuleID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[DisplayText]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[DisplayText]"
+                      length="5000"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[DisplayText]"
+                      name="DisplayText"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[Description]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      length="5000"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[Description]"
+                      name="Description"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[IsActive]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[IsActive]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[IsActive]"
+                      name="IsActive"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[DocumentRuleTypeID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[DocumentRuleTypeID]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[DocumentRuleTypeID]"
+                      name="DocumentRuleTypeID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[DocumentRuleTargetTypeID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[DocumentRuleTargetTypeID]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[DocumentRuleTargetTypeID]"
+                      name="DocumentRuleTargetTypeID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[RuleJSON]"
+                      codePage="1252"
+                      dataType="text"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[RuleJSON]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[RuleJSON]"
+                      name="RuleJSON"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[TargetUIElementID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[TargetUIElementID]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[TargetUIElementID]"
+                      name="TargetUIElementID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[TargetElementPath]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[TargetElementPath]"
+                      length="1000"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[TargetElementPath]"
+                      name="TargetElementPath"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[CompiledRuleJSON]"
+                      codePage="1252"
+                      dataType="text"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[CompiledRuleJSON]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[CompiledRuleJSON]"
+                      name="CompiledRuleJSON"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[IsStandard]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[IsStandard]"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].Columns[IsStandard]"
+                      name="IsStandard"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[FormDesignVersionID]"
+                      dataType="i4"
+                      name="FormDesignVersionID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[FormDesignID]"
+                      dataType="i4"
+                      name="FormDesignID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[AddedBy]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="AddedBy" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[AddedDate]"
+                      dataType="dbTimeStamp"
+                      name="AddedDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[UpdatedBy]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="UpdatedBy" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[UpdatedDate]"
+                      dataType="dbTimeStamp"
+                      name="UpdatedDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[MigrationID]"
+                      dataType="i4"
+                      name="MigrationID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[IsMigrated]"
+                      dataType="i4"
+                      name="IsMigrated" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[IsMigrationOverriden]"
+                      dataType="i4"
+                      name="IsMigrationOverriden" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[MigrationDate]"
+                      dataType="dbTimeStamp"
+                      name="MigrationDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[DocumentRuleID]"
+                      dataType="i4"
+                      name="DocumentRuleID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[DisplayText]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5000"
+                      name="DisplayText" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5000"
+                      name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[IsActive]"
+                      dataType="bool"
+                      name="IsActive" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[DocumentRuleTypeID]"
+                      dataType="i4"
+                      name="DocumentRuleTypeID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[DocumentRuleTargetTypeID]"
+                      dataType="i4"
+                      name="DocumentRuleTargetTypeID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[RuleJSON]"
+                      codePage="1252"
+                      dataType="text"
+                      name="RuleJSON" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[TargetUIElementID]"
+                      dataType="i4"
+                      name="TargetUIElementID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[TargetElementPath]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="TargetElementPath" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[CompiledRuleJSON]"
+                      codePage="1252"
+                      dataType="text"
+                      name="CompiledRuleJSON" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output].ExternalColumns[IsStandard]"
+                      dataType="bool"
+                      name="IsStandard" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[DocumentRuleID]"
+                      dataType="i4"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[DocumentRuleID]"
+                      name="DocumentRuleID" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[DisplayText]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5000"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[DisplayText]"
+                      name="DisplayText" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5000"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      name="Description" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[FormDesignVersionID]"
+                      dataType="i4"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[FormDesignVersionID]"
+                      name="FormDesignVersionID" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[FormDesignID]"
+                      dataType="i4"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[FormDesignID]"
+                      name="FormDesignID" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[AddedBy]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[AddedBy]"
+                      name="AddedBy" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[AddedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[AddedDate]"
+                      name="AddedDate" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[IsActive]"
+                      dataType="bool"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[IsActive]"
+                      name="IsActive" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[DocumentRuleTypeID]"
+                      dataType="i4"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[DocumentRuleTypeID]"
+                      name="DocumentRuleTypeID" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[DocumentRuleTargetTypeID]"
+                      dataType="i4"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[DocumentRuleTargetTypeID]"
+                      name="DocumentRuleTargetTypeID" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[RuleJSON]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[RuleJSON]"
+                      name="RuleJSON" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[UpdatedBy]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[UpdatedBy]"
+                      name="UpdatedBy" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[UpdatedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[UpdatedDate]"
+                      name="UpdatedDate" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[TargetUIElementID]"
+                      dataType="i4"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[TargetUIElementID]"
+                      name="TargetUIElementID" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[TargetElementPath]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[TargetElementPath]"
+                      name="TargetElementPath" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[CompiledRuleJSON]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[CompiledRuleJSON]"
+                      name="CompiledRuleJSON" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[MigrationID]"
+                      dataType="i4"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[MigrationID]"
+                      name="MigrationID" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[IsMigrated]"
+                      dataType="i4"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[IsMigrated]"
+                      name="IsMigrated" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[IsMigrationOverriden]"
+                      dataType="i4"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[IsMigrationOverriden]"
+                      name="IsMigrationOverriden" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[MigrationDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[MigrationDate]"
+                      name="MigrationDate" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[IsStandard]"
+                      dataType="bool"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[IsStandard]"
+                      name="IsStandard" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_To_Copy_DocRule.Paths[OLE DB Source Output]"
+              endId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST_To_DeleteDocRule"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{85e4f186-6413-45f8-8fbf-00f769ab1447}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST_To_DeleteDocRule"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022 CTP2.0; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2AE1A09A-C445-43E4-8576-5C73E2BAA904}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SP_DeleteDRIDER" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST_To_DeleteDocRuleEventMap"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B4B3ECE6-3B03-4F8C-BEF1-AE4343AA9553}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST_To_DeleteDocRuleEventMap"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2AE1A09A-C445-43E4-8576-5C73E2BAA904}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SP_DeleteDREMID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{A2162414-498C-4A4C-9D02-AC5A397348FD}"
+      DTS:From="Package\EST_To_DeleteDocRule"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DFT_To_Copy_DocRule" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{0DD3EB0F-8FDB-48F5-BD31-E24E332B18F4}"
+      DTS:From="Package\DFT_To_Copy_DocRule"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\EST_To_DeleteDocRuleEventMap" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{BDEA7CAD-1986-48CC-823B-454F5B0ED2BF}"
+      DTS:From="Package\EST_To_DeleteDocRuleEventMap"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\DFT_DocRuleEventMap" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="188,41.6"
+          Id="Package\DFT_DocRuleEventMap"
+          TopLeft="546.938784824517,198.82353220019" />
+        <NodeLayout
+          Size="188.8,41.6"
+          Id="Package\DFT_To_Copy_DocRule"
+          TopLeft="529.535155388426,61.3716153320284" />
+        <NodeLayout
+          Size="188.8,41.6"
+          Id="Package\EST_To_DeleteDocRule"
+          TopLeft="236.530615251196,60" />
+        <NodeLayout
+          Size="235.2,41.6"
+          Id="Package\EST_To_DeleteDocRuleEventMap"
+          TopLeft="207.142860670479,194.453784239746" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="425.330615251196,81.4858076660142">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="104.204540137229,0"
+              Start="0,0"
+              End="96.7045401372294,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="96.7045401372294,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="623.935155388426,102.971615332028">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-299.192294717947,91.4821689077176"
+              Start="0,0"
+              End="-299.192294717947,83.9821689077176">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.7410844538588" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.7410844538588"
+                    Point2="0,45.7410844538588"
+                    Point3="-4,45.7410844538588" />
+                  <mssgle:LineSegment
+                    End="-295.192294717947,45.7410844538588" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-295.192294717947,45.7410844538588"
+                    Point2="-299.192294717947,45.7410844538588"
+                    Point3="-299.192294717947,49.7410844538588" />
+                  <mssgle:LineSegment
+                    End="-299.192294717947,83.9821689077176" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="442.342860670479,217.438658219968">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="104.595924154037,0"
+              Start="0,0"
+              End="97.0959241540374,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="97.0959241540374,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT_DocRuleEventMap">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="250.4,41.6"
+          Id="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC"
+          TopLeft="402.5,121.5" />
+        <NodeLayout
+          Size="250.4,41.6"
+          Id="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST"
+          TopLeft="764.5,124.5" />
+        <EdgeLayout
+          Id="Package\DFT_DocRuleEventMap.Paths[OLE DB Source Output]"
+          TopLeft="652.9,143.8">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="111.6,0"
+              Start="0,0"
+              End="104.1,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="104.1,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="44.05,5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DFT_To_Copy_DocRule">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="204,41.6"
+          Id="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC"
+          TopLeft="472.142865183402,155.235296294763" />
+        <NodeLayout
+          Size="204.8,41.6"
+          Id="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST"
+          TopLeft="790.00001345362,156.764708080919" />
+        <EdgeLayout
+          Id="Package\DFT_To_Copy_DocRule.Paths[OLE DB Source Output]"
+          TopLeft="676.142865183402,176.800002187841">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="113.857148270218,0"
+              Start="0,0"
+              End="106.357148270218,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="106.357148270218,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

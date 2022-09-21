@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="AZ-VDI-D1-244.eBS4_INT_QA2.sa1"
+  DTS:DTSID="{7788E99E-421E-433E-B3D9-9E2A99E7271B}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">@[$Project::ConnectionString]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=AZ-VDI-D1-244;User ID=sa;Password = sa@123 ; Initial Catalog=eBS4_INT_QA2;Provider=SQLNCLI11.1;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
