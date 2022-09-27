@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="22"
-  DTS:VersionGUID="{08813794-D2EA-4C22-BB41-3AD88F344A3C}">
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{DC303780-FAAA-4127-B671-A030C064A68A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -37,7 +37,7 @@
       DTS:ObjectName="DocumentRuleQuery">
       <DTS:VariableValue
         DTS:DataType="8">select * from ui.DocumentRule where 
-DocumentRuleID = 0and FormDesignId = 4354</DTS:VariableValue>
+DocumentRuleID = 12371and FormDesignId = 4411</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -68,7 +68,7 @@ DocumentRuleID = 0and FormDesignId = 4354</DTS:VariableValue>
       DTS:Namespace="User"
       DTS:ObjectName="SP_DeleteDRIDER">
       <DTS:VariableValue
-        DTS:DataType="8">exec [sync].[ExistDoctRuleIdExpRule] 0,4354</DTS:VariableValue>
+        DTS:DataType="8">exec [sync].[ExistDoctRuleIdExpRule] 12371,4411</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
