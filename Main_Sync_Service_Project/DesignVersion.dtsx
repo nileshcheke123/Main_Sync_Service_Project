@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="51"
-  DTS:VersionGUID="{EBA2EE94-C8EB-43C3-A310-E4FBE8EA0EF6}">
+  DTS:VersionBuild="55"
+  DTS:VersionGUID="{7EC9442E-6284-46C9-BC63-544D1DC6482C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -74,23 +74,23 @@ formDesignId = 4354and formdesignversionid = 0</DTS:VariableValue>
       DTS:CreationName=""
       DTS:DTSID="{41F5DA92-DE5F-4CDF-A34B-F2A1BDFD8CCD}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;exec [sync].[ExistDoctRuleIdDesgVersion]&quot; + (DT_STR,10,1252)  @[$Project::FormDesignId] + &quot;,&quot; + (DT_STR,10,1252)  @[$Project::FormDesignversionId]"
+      DTS:Expression="&quot;exec [sync].[ExistDoctRuleIdDesgVersion] 4354, 0&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="SP_DeleteDRIDDV">
       <DTS:VariableValue
-        DTS:DataType="8">exec [sync].[ExistDoctRuleIdDesgVersion]4354,0</DTS:VariableValue>
+        DTS:DataType="8">exec [sync].[ExistDoctRuleIdDesgVersion] 4354, 0</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{129D3E41-8CE7-4C1D-8928-B4883EA81398}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;exec [sync].[ExistFormDesignVersionId] &quot; + (DT_STR,10,1252)  @[$Project::FormDesignId] + &quot;,&quot; + (DT_STR,10,1252)   @[$Project::FormDesignversionId]"
+      DTS:Expression="&quot;exec [sync].[ExistFormDesignVersionId]  4354, 0&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="SP_DeleteFDVID">
       <DTS:VariableValue
-        DTS:DataType="8">exec [sync].[ExistFormDesignVersionId] 4354,0</DTS:VariableValue>
+        DTS:DataType="8">exec [sync].[ExistFormDesignVersionId]  4354, 0</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -4441,9 +4441,7 @@ UpdatedDate = ? ,Comments = ?,FormDesignTypeID = ? ,LastUpdatedDate = ? ,RuleExe
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

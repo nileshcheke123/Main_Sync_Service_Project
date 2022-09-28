@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="EntireDesign"
   DTS:PackageType="5"
-  DTS:VersionBuild="261"
-  DTS:VersionGUID="{A3EBCEA0-00CD-4E5E-ACE3-02575D87833A}">
+  DTS:VersionBuild="302"
+  DTS:VersionGUID="{DC9AF3A9-6D60-4D7C-B68D-7FB1C4CA38C2}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -80,25 +80,62 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:DTSID="{94870048-D7A8-4499-8D7A-7C45D6ED8E93}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;delete from ui.DocumentRuleEventMap where DocumentRuleID in (select DocumentRuleID from ui.DocumentRule where FormDesignVersionID = &quot;+(DT_STR,10,1252) @[$Project::FormDesignversionId] +&quot;)&#xA;&#xA;delete from ui.DocumentRule where FormDesignVersionID =  &quot;+(DT_STR,10,1252) @[$Project::FormDesignversionId] +&quot;&#xA;&#xA;delete from ui.FormDesignVersion where FormDesignVersionID =  &quot;+(DT_STR,10,1252) @[$Project::FormDesignversionId]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DeleteExistingFDVID_var">
+      <DTS:VariableValue
+        DTS:DataType="8">delete from ui.DocumentRuleEventMap where DocumentRuleID in (select DocumentRuleID from ui.DocumentRule where FormDesignVersionID = 4381)
+
+delete from ui.DocumentRule where FormDesignVersionID =  4381
+
+delete from ui.FormDesignVersion where FormDesignVersionID =  4381</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
       DTS:DTSID="{AA446E59-07E5-4358-8EF0-853B95C6B8E1}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;select * from [UI].DocumentRuleEventMap where DocumentRuleID in (select DocumentRuleID from [UI].DocumentRule where FormDesignID in &quot; +  @[$Project::FormDesignId] + &quot;)&quot;"
+      DTS:Expression="&quot;select * from [UI].DocumentRuleEventMap where DocumentRuleID in (select DocumentRuleID from [UI].DocumentRule where FormDesignID = &quot; +  (DT_STR,10,1252)@[$Project::FormDesignId] + &quot;)&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="DocRuleEventMapQuery">
       <DTS:VariableValue
-        DTS:DataType="8">select * from [UI].DocumentRuleEventMap where DocumentRuleID in (select DocumentRuleID from [UI].DocumentRule where FormDesignID in ( select top 1 FormID from UI.FormDesign ORDER BY FormID DESC ))</DTS:VariableValue>
+        DTS:DataType="8">select * from [UI].DocumentRuleEventMap where DocumentRuleID in (select DocumentRuleID from [UI].DocumentRule where FormDesignID = 4371)</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9A6DDCD7-3CCD-481A-B4A0-FA6618790F43}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;select * from [UI].DocumentRuleEventMap where DocumentRuleID in (select DocumentRuleID from [UI].DocumentRule where FormDesignVersionID = &quot; +  (DT_STR,10,1252) @[$Project::FormDesignversionId] + &quot;)&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DocRuleEventMapQuery_DesignVersion">
+      <DTS:VariableValue
+        DTS:DataType="8">select * from [UI].DocumentRuleEventMap where DocumentRuleID in (select DocumentRuleID from [UI].DocumentRule where FormDesignVersionID = 4381)</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{0675E593-CC58-4A49-873B-F64310BDD043}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;select * from ui.DocumentRule where FormDesignID in &quot; +@[$Project::FormDesignId]"
+      DTS:Expression="&quot;select * from ui.DocumentRule where FormDesignID = &quot; +(DT_STR,10,1252)@[$Project::FormDesignId]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="DocRuleQuery">
       <DTS:VariableValue
-        DTS:DataType="8">select * from ui.DocumentRule where FormDesignID in ( select top 1 FormID from UI.FormDesign ORDER BY FormID DESC )</DTS:VariableValue>
+        DTS:DataType="8">select * from ui.DocumentRule where FormDesignID = 4371</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{93B362F5-2896-4D60-8B8F-955768B4CCBA}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;select * from ui.documentrule where formdesignid = &quot;+(DT_STR,10,1252) @[$Project::FormDesignId] +&quot; and formdesignversionid = &quot;+(DT_STR,10,1252) @[$Project::FormDesignversionId]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DocRuleQuery_DesignVersion">
+      <DTS:VariableValue
+        DTS:DataType="8">select * from ui.documentrule where formdesignid = 4371 and formdesignversionid = 4381</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -168,12 +205,23 @@
       DTS:CreationName=""
       DTS:DTSID="{E74BE1CB-1667-4BFC-9ABA-7AD004BFF62B}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;select * from [UI].[FormDesignVersion] where FormDesignID in &quot; + @[$Project::FormDesignId]"
+      DTS:Expression="&quot;select * from [UI].[FormDesignVersion] where FormDesignID = &quot;+(DT_STR,10,1252) @[$Project::FormDesignId]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="FormDesignVersionQuery">
       <DTS:VariableValue
-        DTS:DataType="8">select * from [UI].[FormDesignVersion] where FormDesignID in ( select top 1 FormID from UI.FormDesign ORDER BY FormID DESC )</DTS:VariableValue>
+        DTS:DataType="8">select * from [UI].[FormDesignVersion] where FormDesignID = 4371</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E241B87C-23C3-4470-AA95-7241E067242D}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;select * from [UI].[FormDesignVersion] where FormDesignID = &quot;+(DT_STR,10,1252) @[$Project::FormDesignId] +&quot; and FormDesignVersionId = &quot;+(DT_STR,10,1252) @[$Project::FormDesignversionId]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FormDesignVersionQuery_DesignVersion">
+      <DTS:VariableValue
+        DTS:DataType="8">select * from [UI].[FormDesignVersion] where FormDesignID = 4371 and FormDesignVersionId = 4381</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -217,6 +265,48 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:DTSID="{EEE57EF9-64B9-49E2-A326-AB4E4D6ECEC1}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="IsPresent">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C2A0B9A2-4E02-40EF-BD1A-FCAFAFD2DF18}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;exec [sync].[ExistDocRuleEventMapIdDesgVer]4354, 0 &quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SP_DeleteDREMIDDV">
+      <DTS:VariableValue
+        DTS:DataType="8">exec [sync].[ExistDocRuleEventMapIdDesgVer]4354, 0 </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A64A3A59-C4F0-47B7-BD32-D7930DEB8CFD}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;exec [sync].[ExistDoctRuleIdDesgVersion] 4354, 0&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SP_DeleteDRIDDV">
+      <DTS:VariableValue
+        DTS:DataType="8">exec [sync].[ExistDoctRuleIdDesgVersion] 4354, 0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9932D6FF-C2B5-46C2-ABE6-79DBB4CDB5F0}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;exec [sync].[ExistFormDesignVersionId]  4354, 0&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SP_DeleteFDVID">
+      <DTS:VariableValue
+        DTS:DataType="8">exec [sync].[ExistFormDesignVersionId]  4354, 0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
       DTS:DTSID="{66F2C9EE-DC98-40B9-A8F7-9064BC27EFAA}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="&quot;Exec [dbo].[SP_IsExistFormID] &quot; +  @[$Project::FormDesignId]"
@@ -248,13 +338,23 @@
       <DTS:VariableValue
         DTS:DataType="8">EXEC  [dbo].[SP_ToRemoveKeyConstraint]</DTS:VariableValue>
     </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3EF2238B-0306-424A-B123-A2B343C22773}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;exec  sync.UpdateOrInsertFormDesgVr &quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="UpdateorInsertFDVID">
+      <DTS:VariableValue
+        DTS:DataType="8">exec  sync.UpdateOrInsertFormDesgVr </DTS:VariableValue>
+    </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\DFT_To_Copy_Data_In_File"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{AB6EB4E1-B36B-4077-BC22-3064CCAC02E1}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -449,8 +549,8 @@ ORDER BY ID</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{2AE1A09A-C445-43E4-8576-5C73E2BAA904}"
-          SQLTask:SqlStatementSource="Exec [dbo].[SP_IsExistFormID] 3682"
+          SQLTask:Connection="{7788E99E-421E-433E-B3D9-9E2A99E7271B}"
+          SQLTask:SqlStatementSource="Exec [dbo].[SP_IsExistFormID] 4368"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
             SQLTask:ResultName="0"
@@ -462,7 +562,6 @@ ORDER BY ID</property>
       DTS:refId="Package\EST_To_Exec_FolderCopyPROC"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{CFC24C6B-11A8-4E27-8F4D-631FAAB62754}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -479,7 +578,6 @@ ORDER BY ID</property>
       DTS:refId="Package\EST_To_Exec_Script_On_Target"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{CDB40221-185E-4756-814A-2EBC4D5B8CB5}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -497,7 +595,6 @@ ORDER BY ID</property>
       DTS:refId="Package\EST_To_Get_FldrID"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{9C68B6F2-B2A5-4B7B-B645-61F7495B67DC}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -519,7 +616,6 @@ ORDER BY ID</property>
       DTS:refId="Package\EST_To_Get_MasterListId"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{842CC130-0255-47E0-8766-32942B5E773D}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -576,8 +672,8 @@ ORDER BY ID</property>
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{7788E99E-421E-433E-B3D9-9E2A99E7271B}"
-              SQLTask:SqlStatementSource="EXEC [sync].[SP_DeleteDesign] 3677" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:Connection="{2AE1A09A-C445-43E4-8576-5C73E2BAA904}"
+              SQLTask:SqlStatementSource="EXEC [sync].[SP_DeleteDesign] 4368" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -1912,6 +2008,8 @@ ORDER BY ID</property>
           DTS:ObjectName="DFT_To_Copy_FormDesign"
           DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Disable">@[$Project::Type] == "Design Version"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <pipeline
               version="1">
@@ -2971,6 +3069,8 @@ ORDER BY ID</property>
           DTS:ObjectName="DFT_To_Copy_FormDesignGroup"
           DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Disable">@[$Project::Type] == "Design Version"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <pipeline
               version="1">
@@ -3553,6 +3653,8 @@ ORDER BY ID</property>
           DTS:ObjectName="DFT_To_Copy_FormDesignGroupMapping"
           DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Disable">@[$Project::Type] == "Design Version"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <pipeline
               version="1">
@@ -4055,6 +4157,8 @@ ORDER BY ID</property>
           DTS:ObjectName="DFT_To_Copy_FormDesignMapping"
           DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Disable">@[$Project::Type] == "Design Version"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <pipeline
               version="1">
@@ -5841,6 +5945,26 @@ ORDER BY ID</property>
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
+          DTS:refId="Package\Sequence Container 1\EST_To_Delete_Entries"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{E2F75B56-A287-4712-A9A3-A729A4196D70}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST_To_Delete_Entries"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Disable">@[$Project::Type] == "Entire Design"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{2AE1A09A-C445-43E4-8576-5C73E2BAA904}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::DeleteExistingFDVID_var" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
           DTS:refId="Package\Sequence Container 1\EST_To_Delete_FormDesignType"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
@@ -5855,6 +5979,21 @@ ORDER BY ID</property>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{2AE1A09A-C445-43E4-8576-5C73E2BAA904}"
               SQLTask:SqlStatementSource="delete from Ui.FormDesignType" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container 1\EXP_Task_To_Build_Queries"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{BC87E928-AC9A-4D8A-8F01-40D39C5595AD}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXP_Task_To_Build_Queries"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::FormDesignVersionQuery] = &#xA;( @[$Project::Type]  == &quot;Design Version&quot; ? &quot;select * from [UI].[FormDesignVersion] where FormDesignID = &quot;+(DT_STR,10,1252) @[$Project::FormDesignId] +&quot; and FormDesignVersionId = &quot;+(DT_STR,10,1252) @[$Project::FormDesignversionId] : &#xA;@[$Project::Type]  == &quot;Entire Design&quot; ? &quot;select * from [UI].[FormDesignVersion] where FormDesignID = &quot;+(DT_STR,10,1252) @[$Project::FormDesignId]  :  &quot;&quot;)" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -5886,11 +6025,11 @@ ORDER BY ID</property>
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Sequence Container 1.PrecedenceConstraints[Constraint 3]"
           DTS:CreationName=""
-          DTS:DTSID="{620B7279-7305-4D1A-9A4D-D44902BBD0BE}"
+          DTS:DTSID="{5EA0C648-0DBD-49BE-A7C1-CEF31412CC0A}"
           DTS:From="Package\Sequence Container 1\DFT_To_Copy_FormDesignMapping"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 3"
-          DTS:To="Package\Sequence Container 1\DFT_To_Copy_FormDesignVersion" />
+          DTS:To="Package\Sequence Container 1\EST_To_Delete_Entries" />
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Sequence Container 1.PrecedenceConstraints[Constraint 4]"
           DTS:CreationName=""
@@ -5911,6 +6050,8 @@ ORDER BY ID</property>
           DTS:refId="Package\Sequence Container 1.PrecedenceConstraints[Constraint 6]"
           DTS:CreationName=""
           DTS:DTSID="{12E0AFF4-2942-48D4-8C21-D00BF20E61F7}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[$Project::Type] == &quot;Entire Design&quot;"
           DTS:From="Package\Sequence Container 1\DFT_To_Copy_DocumentRuleEventMap"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 6"
@@ -5923,6 +6064,22 @@ ORDER BY ID</property>
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 7"
           DTS:To="Package\Sequence Container 1\DFT_To_Copy_FormDesignType" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container 1.PrecedenceConstraints[Constraint 8]"
+          DTS:CreationName=""
+          DTS:DTSID="{D621A571-F962-4AE2-A755-C1EDF0EB5668}"
+          DTS:From="Package\Sequence Container 1\EST_To_Delete_Entries"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 8"
+          DTS:To="Package\Sequence Container 1\EXP_Task_To_Build_Queries" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container 1.PrecedenceConstraints[Constraint 9]"
+          DTS:CreationName=""
+          DTS:DTSID="{EBFECD87-5995-4E6D-94FA-06C1225930C5}"
+          DTS:From="Package\Sequence Container 1\EXP_Task_To_Build_Queries"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 9"
+          DTS:To="Package\Sequence Container 1\DFT_To_Copy_FormDesignVersion" />
       </DTS:PrecedenceConstraints>
     </DTS:Executable>
   </DTS:Executables>
@@ -5941,6 +6098,8 @@ ORDER BY ID</property>
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
       DTS:DTSID="{875399EA-D82B-4152-B908-19ADF5FAF019}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::Type] == &quot;Entire Design&quot;"
       DTS:From="Package\Sequence Container 1"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
@@ -6005,23 +6164,23 @@ ORDER BY ID</property>
         <NodeLayout
           Size="209.6,41.6"
           Id="Package\DFT_To_Copy_Data_In_File"
-          TopLeft="1227.32144947259,760.882363612265" />
+          TopLeft="1985.32146037172,472.77941839526" />
         <NodeLayout
           Size="227.2,41.6"
           Id="Package\EST_To_Exec_FolderCopyPROC"
-          TopLeft="908.571444044307,758.97059887957" />
+          TopLeft="1708.71431280399,465.514712411021" />
         <NodeLayout
           Size="230.4,41.6"
           Id="Package\EST_To_Exec_Script_On_Target"
-          TopLeft="1563.92859806211,761.838245978611" />
+          TopLeft="1821.10002771615,555.558831320914" />
         <NodeLayout
           Size="171.2,41.6"
           Id="Package\EST_To_Get_FldrID"
-          TopLeft="645.178582415898,757.058834146876" />
+          TopLeft="1979.2500316969,360.367652112844" />
         <NodeLayout
           Size="200,41.6"
           Id="Package\EST_To_Get_MasterListId"
-          TopLeft="337.142862884366,755.147069414182" />
+          TopLeft="1721.57145639099,357.500005013803" />
         <NodeLayout
           Size="164.8,41.6"
           Id="Package\EST_ToCheckExist"
@@ -6089,120 +6248,14 @@ ORDER BY ID</property>
           Size="280.8,357.6"
           Id="Package\Sequence Container"
           TopLeft="226.683677329789,322.81513057778" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 10]"
-          TopLeft="816.378582415898,778.814716513223">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="92.192861628409,0"
-              Start="0,0"
-              End="84.692861628409,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="84.692861628409,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 11]"
-          TopLeft="1135.77144404431,780.726481245917">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="91.550005428282,0"
-              Start="0,0"
-              End="84.050005428282,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="84.050005428282,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 12]"
-          TopLeft="1436.92144947259,782.160304795438">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="127.007148589524,0"
-              Start="0,0"
-              End="119.507148589524,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="119.507148589524,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 14]"
-          TopLeft="363.721432868437,252.167229843882">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,70.647900733898"
-              Start="0,0"
-              End="0,63.147900733898">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,63.147900733898" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8,23.573950366949,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 9]"
-          TopLeft="537.142862884366,776.902951780529">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="108.035719531532,0"
-              Start="0,0"
-              End="100.535719531532,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="100.535719531532,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="42.2678597657662,5,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="219.2,41.6"
+          Id="Package\Sequence Container 1\DFT_To_Copy_DocumentRule"
+          TopLeft="476.840830836699,314.197064172479" />
+        <NodeLayout
+          Size="264.8,41.6"
+          Id="Package\Sequence Container 1\DFT_To_Copy_DocumentRuleEventMap"
+          TopLeft="454.162259021913,400.608830090254" />
         <NodeLayout
           Size="206.4,41.6"
           Id="Package\Sequence Container 1\DFT_To_Copy_FormDesign"
@@ -6218,27 +6271,19 @@ ORDER BY ID</property>
         <NodeLayout
           Size="246.4,41.6"
           Id="Package\Sequence Container 1\DFT_To_Copy_FormDesignMapping"
-          TopLeft="43.9836806080437,287.623534388031" />
-        <NodeLayout
-          Size="240.8,41.6"
-          Id="Package\Sequence Container 1\DFT_To_Copy_FormDesignVersion"
-          TopLeft="6.66225140103381,376.138241511769" />
-        <NodeLayout
-          Size="219.2,41.6"
-          Id="Package\Sequence Container 1\DFT_To_Copy_DocumentRule"
-          TopLeft="22.3765373829325,453.94706613242" />
-        <NodeLayout
-          Size="264.8,41.6"
-          Id="Package\Sequence Container 1\DFT_To_Copy_DocumentRuleEventMap"
-          TopLeft="279.340827473293,448.976477827415" />
-        <NodeLayout
-          Size="235.2,41.6"
-          Id="Package\Sequence Container 1\EST_To_Delete_FormDesignType"
-          TopLeft="295.055113455196,379.770594503887" />
+          TopLeft="80.3102118389256,295.379837017819" />
         <NodeLayout
           Size="229.6,41.6"
           Id="Package\Sequence Container 1\DFT_To_Copy_FormDesignType"
-          TopLeft="323.983685376408,292.211769746496" />
+          TopLeft="472.197973614768,573.050008979263" />
+        <NodeLayout
+          Size="240.8,41.6"
+          Id="Package\Sequence Container 1\DFT_To_Copy_FormDesignVersion"
+          TopLeft="469.451374928544,221.922553074442" />
+        <NodeLayout
+          Size="235.2,41.6"
+          Id="Package\Sequence Container 1\EST_To_Delete_FormDesignType"
+          TopLeft="462.376544876092,480.520595916868" />
         <EdgeLayout
           Id="Package\Sequence Container 1.PrecedenceConstraints[Constraint]"
           TopLeft="133.25510894227,62.3411777039299">
@@ -6309,52 +6354,18 @@ ORDER BY ID</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Sequence Container 1.PrecedenceConstraints[Constraint 2]"
-          TopLeft="167.687251922576,247.400003828722">
+          TopLeft="165.98385087135,247.400003828722">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,40.2235305593096"
+              EndConnector="0,47.9798331890966"
               Start="0,0"
-              End="0,32.7235305593096">
+              End="0,40.4798331890966">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,32.7235305593096" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Sequence Container 1.PrecedenceConstraints[Constraint 3]"
-          TopLeft="167.183680608044,329.223534388031">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-40.1214292070099,46.914707123738"
-              Start="0,0"
-              End="-40.1214292070099,39.414707123738">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,19.457353561869" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,19.457353561869"
-                    Point2="0,23.457353561869"
-                    Point3="-4,23.457353561869" />
-                  <mssgle:LineSegment
-                    End="-36.1214292070099,23.457353561869" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-36.1214292070099,23.457353561869"
-                    Point2="-40.1214292070099,23.457353561869"
-                    Point3="-40.1214292070099,27.457353561869" />
-                  <mssgle:LineSegment
-                    End="-40.1214292070099,39.414707123738" />
+                    End="0,40.4798331890966" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6365,18 +6376,18 @@ ORDER BY ID</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Sequence Container 1.PrecedenceConstraints[Constraint 4]"
-          TopLeft="129.519394391983,417.738241511769">
+          TopLeft="588.146102882622,263.522553074442">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,36.2088246206504"
+              EndConnector="0,50.6745110980369"
               Start="0,0"
-              End="0,28.7088246206504">
+              End="0,43.1745110980369">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.7088246206504" />
+                    End="0,43.1745110980369" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6387,18 +6398,18 @@ ORDER BY ID</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Sequence Container 1.PrecedenceConstraints[Constraint 5]"
-          TopLeft="241.576537382932,472.261771979918">
+          TopLeft="586.501544929306,355.797064172479">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="37.7642900903605,0"
+              EndConnector="0,44.8117659177747"
               Start="0,0"
-              End="30.2642900903605,0">
+              End="0,37.3117659177747">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="30.2642900903605,0" />
+                    End="0,37.3117659177747" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6409,18 +6420,84 @@ ORDER BY ID</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Sequence Container 1.PrecedenceConstraints[Constraint 6]"
-          TopLeft="412.197970464245,448.976477827415">
+          TopLeft="583.269401949003,442.208830090254">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,-27.6058833235277"
+              EndConnector="0,38.3117658266137"
               Start="0,0"
-              End="0,-20.1058833235277">
+              End="0,30.8117658266137">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-20.1058833235277" />
+                    End="0,30.8117658266137" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,7.40588291330687,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container 1.PrecedenceConstraints[Constraint 7]"
+          TopLeft="583.48725924543,522.120595916868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50.9294130623958"
+              Start="0,0"
+              End="0,43.4294130623958">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.4294130623958" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="188,41.6"
+          Id="Package\Sequence Container 1\EST_To_Delete_Entries"
+          TopLeft="408.644916049106,43.2549039698801" />
+        <NodeLayout
+          Size="212.8,41.6"
+          Id="Package\Sequence Container 1\EXP_Task_To_Build_Queries"
+          TopLeft="504.209540393401,115.392159883539" />
+        <EdgeLayout
+          Id="Package\Sequence Container 1.PrecedenceConstraints[Constraint 8]"
+          TopLeft="532.644916049106,84.8549039698801">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="77.9646243442952,30.5372559136588"
+              Start="0,0"
+              End="77.9646243442952,23.0372559136588">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.36952138274787" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.36952138274787"
+                    Point2="0,12.3695213827479"
+                    Point3="4,12.3695213827479" />
+                  <mssgle:LineSegment
+                    End="73.9646243442952,12.3695213827479" />
+                  <mssgle:CubicBezierSegment
+                    Point1="73.9646243442952,12.3695213827479"
+                    Point2="77.9646243442952,12.3695213827479"
+                    Point3="77.9646243442952,16.3695213827479" />
+                  <mssgle:LineSegment
+                    End="77.9646243442952,23.0372559136588" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6430,31 +6507,65 @@ ORDER BY ID</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Sequence Container 1.PrecedenceConstraints[Constraint 7]"
-          TopLeft="412.655113455196,379.770594503887">
+          Id="Package\Sequence Container 1.PrecedenceConstraints[Constraint 9]"
+          TopLeft="610.609540393401,156.992159883539">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="26.1285719212121,-45.9588247573919"
+              EndConnector="-20.758165464857,64.9303931909035"
               Start="0,0"
-              End="26.1285719212121,-38.4588247573919">
+              End="-20.758165464857,57.4303931909035">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-18.9794123786959" />
+                    End="0,28.4651965954517" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,-18.9794123786959"
-                    Point2="0,-22.9794123786959"
-                    Point3="4,-22.9794123786959" />
+                    Point1="0,28.4651965954517"
+                    Point2="0,32.4651965954517"
+                    Point3="-4,32.4651965954517" />
                   <mssgle:LineSegment
-                    End="22.1285719212121,-22.9794123786959" />
+                    End="-16.758165464857,32.4651965954517" />
                   <mssgle:CubicBezierSegment
-                    Point1="22.1285719212121,-22.9794123786959"
-                    Point2="26.1285719212121,-22.9794123786959"
-                    Point3="26.1285719212121,-26.9794123786959" />
+                    Point1="-16.758165464857,32.4651965954517"
+                    Point2="-20.758165464857,32.4651965954517"
+                    Point3="-20.758165464857,36.4651965954517" />
                   <mssgle:LineSegment
-                    End="26.1285719212121,-38.4588247573919" />
+                    End="-20.758165464857,57.4303931909035" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container 1.PrecedenceConstraints[Constraint 3]"
+          TopLeft="243.243545172259,295.379837017819">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="229.401370876847,-210.524933047938"
+              Start="0,0"
+              End="229.401370876847,-203.024933047938">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-101.001942365425" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-101.001942365425"
+                    Point2="0,-105.001942365425"
+                    Point3="4,-105.001942365425" />
+                  <mssgle:LineSegment
+                    End="225.401370876847,-105.001942365425" />
+                  <mssgle:CubicBezierSegment
+                    Point1="225.401370876847,-105.001942365425"
+                    Point2="229.401370876847,-105.001942365425"
+                    Point3="229.401370876847,-109.001942365425" />
+                  <mssgle:LineSegment
+                    End="229.401370876847,-203.024933047938" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6466,8 +6577,8 @@ ORDER BY ID</property>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="672,584.8"
-          Size="672,628"
+          PanelSize="908.8,669.6"
+          Size="908.8,712.8"
           Id="Package\Sequence Container 1"
           TopLeft="653.798937505834,56.5882360877464" />
         <EdgeLayout
@@ -6476,68 +6587,208 @@ ORDER BY ID</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="211.039749098748,139.221006243864"
+              EndConnector="211.039749098747,181.621006243864"
               Start="0,0"
-              End="203.539749098748,139.221006243864">
+              End="203.539749098747,181.621006243864">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="101.519874549374,0" />
+                    End="101.519874549373,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="101.519874549374,0"
-                    Point2="105.519874549374,0"
-                    Point3="105.519874549374,4" />
+                    Point1="101.519874549373,0"
+                    Point2="105.519874549373,0"
+                    Point3="105.519874549373,4" />
                   <mssgle:LineSegment
-                    End="105.519874549374,135.221006243864" />
+                    End="105.519874549373,177.621006243864" />
                   <mssgle:CubicBezierSegment
-                    Point1="105.519874549374,135.221006243864"
-                    Point2="105.519874549374,139.221006243864"
-                    Point3="109.519874549374,139.221006243864" />
+                    Point1="105.519874549373,177.621006243864"
+                    Point2="105.519874549373,181.621006243864"
+                    Point3="109.519874549373,181.621006243864" />
                   <mssgle:LineSegment
-                    End="203.539749098748,139.221006243864" />
+                    End="203.539749098747,181.621006243864" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="97.5198745493739,-22,16,16"
+              BoundingBox="97.5198745493735,-22,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="989.798937505834,684.588236087746">
+          TopLeft="1562.59893750583,412.988236087746">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-552.656074621469,70.5588333264353"
+              EndConnector="158.972518885155,-34.6882310739433"
               Start="0,0"
-              End="-552.656074621469,63.0588333264353">
+              End="151.472518885155,-34.6882310739433">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.2794166632177" />
+                    End="75.4862594425776,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,31.2794166632177"
-                    Point2="0,35.2794166632177"
-                    Point3="-4,35.2794166632177" />
+                    Point1="75.4862594425776,0"
+                    Point2="79.4862594425776,0"
+                    Point3="79.4862594425776,-4" />
                   <mssgle:LineSegment
-                    End="-548.656074621469,35.2794166632177" />
+                    End="79.4862594425776,-30.6882310739433" />
                   <mssgle:CubicBezierSegment
-                    Point1="-548.656074621469,35.2794166632177"
-                    Point2="-552.656074621469,35.2794166632177"
-                    Point3="-552.656074621469,39.2794166632177" />
+                    Point1="79.4862594425776,-30.6882310739433"
+                    Point2="79.4862594425776,-34.6882310739433"
+                    Point3="83.4862594425776,-34.6882310739433" />
                   <mssgle:LineSegment
-                    End="-552.656074621469,63.0588333264353" />
+                    End="151.472518885155,-34.6882310739433" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="71.4862594425776,1,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="2064.8500316969,401.967652112844">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-242.535718892915,63.5470602981764"
+              Start="0,0"
+              End="-242.535718892915,56.0470602981764">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.7735301490882" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.7735301490882"
+                    Point2="0,31.7735301490882"
+                    Point3="-4,31.7735301490882" />
+                  <mssgle:LineSegment
+                    End="-238.535718892915,31.7735301490882" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-238.535718892915,31.7735301490882"
+                    Point2="-242.535718892915,31.7735301490882"
+                    Point3="-242.535718892915,35.7735301490882" />
+                  <mssgle:LineSegment
+                    End="-242.535718892915,56.0470602981764" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="1935.91431280399,489.947065403141">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="49.4071475677379,0"
+              Start="0,0"
+              End="41.9071475677379,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="41.9071475677379,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="2090.12146037172,514.37941839526">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-153.821432655577,41.1794129256546"
+              Start="0,0"
+              End="-153.821432655577,33.6794129256546">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.5897064628273" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.5897064628273"
+                    Point2="0,20.5897064628273"
+                    Point3="-4,20.5897064628273" />
+                  <mssgle:LineSegment
+                    End="-149.821432655577,20.5897064628273" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-149.821432655577,20.5897064628273"
+                    Point2="-153.821432655577,20.5897064628273"
+                    Point3="-153.821432655577,24.5897064628273" />
+                  <mssgle:LineSegment
+                    End="-153.821432655577,33.6794129256546" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 14]"
+          TopLeft="363.721432868438,252.167229843882">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,70.647900733898"
+              Start="0,0"
+              End="0,63.147900733898">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.147900733898" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,23.573950366949,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="1921.57145639099,379.733828563324">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="57.678575305913,0"
+              Start="0,0"
+              End="50.178575305913,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="50.178575305913,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="17.0892876529565,5,16,16"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6597,13 +6848,13 @@ ORDER BY ID</property>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="204.8,41.6"
-          Id="Package\Sequence Container 1\DFT_To_Copy_DocumentRule\OLEDB_DocumentRuleDST"
-          TopLeft="511.5,147.5" />
-        <NodeLayout
           Size="204,41.6"
           Id="Package\Sequence Container 1\DFT_To_Copy_DocumentRule\OLEDB_DocumentRuleSRC"
           TopLeft="164.5,145.5" />
+        <NodeLayout
+          Size="204.8,41.6"
+          Id="Package\Sequence Container 1\DFT_To_Copy_DocumentRule\OLEDB_DocumentRuleDST"
+          TopLeft="511.5,147.5" />
         <EdgeLayout
           Id="Package\Sequence Container 1\DFT_To_Copy_DocumentRule.Paths[OLE DB Source Output]"
           TopLeft="368.5,167.3">
@@ -6657,12 +6908,12 @@ ORDER BY ID</property>
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="250.4,41.6"
-          Id="Package\Sequence Container 1\DFT_To_Copy_DocumentRuleEventMap\OLEDB_DocumentRuleEventMapDST"
-          TopLeft="638.5,150.5" />
-        <NodeLayout
-          Size="250.4,41.6"
           Id="Package\Sequence Container 1\DFT_To_Copy_DocumentRuleEventMap\OLEDB_DocumentRuleEventMapSRC"
           TopLeft="274.5,147.5" />
+        <NodeLayout
+          Size="250.4,41.6"
+          Id="Package\Sequence Container 1\DFT_To_Copy_DocumentRuleEventMap\OLEDB_DocumentRuleEventMapDST"
+          TopLeft="638.5,150.5" />
         <EdgeLayout
           Id="Package\Sequence Container 1\DFT_To_Copy_DocumentRuleEventMap.Paths[OLE DB Source Output]"
           TopLeft="524.9,169.8">
@@ -6716,12 +6967,12 @@ ORDER BY ID</property>
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="178.4,41.6"
-          Id="Package\Sequence Container 1\DFT_To_Copy_FormDesign\OLE_FormDesignDST"
-          TopLeft="730.000012431826,94.0588248485512" />
-        <NodeLayout
-          Size="178.4,41.6"
           Id="Package\Sequence Container 1\DFT_To_Copy_FormDesign\OLE_FormDesignSRC"
           TopLeft="340.714291516616,91.0000012762406" />
+        <NodeLayout
+          Size="178.4,41.6"
+          Id="Package\Sequence Container 1\DFT_To_Copy_FormDesign\OLE_FormDesignDST"
+          TopLeft="730.000012431826,94.0588248485512" />
         <EdgeLayout
           Id="Package\Sequence Container 1\DFT_To_Copy_FormDesign.Paths[OLE DB Source Output]"
           TopLeft="519.114291516616,113.329413062396">
@@ -6833,27 +7084,27 @@ ORDER BY ID</property>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="260,41.6"
+          Id="Package\Sequence Container 1\DFT_To_Copy_FormDesignGroupMapping\OLEDB_FormDesignGroupMappingSRC"
+          TopLeft="487,133" />
+        <NodeLayout
           Size="260.8,41.6"
           Id="Package\Sequence Container 1\DFT_To_Copy_FormDesignGroupMapping\OLEDB_FormDesignGroupMappingDST"
           TopLeft="848,137" />
-        <NodeLayout
-          Size="260,41.6"
-          Id="Package\Sequence Container 1\DFT_To_Copy_FormDesignGroupMapping\OLEDB_FormDesignGroupMappingSRC"
-          TopLeft="485,133" />
         <EdgeLayout
           Id="Package\Sequence Container 1\DFT_To_Copy_FormDesignGroupMapping.Paths[OLE DB Source Output]"
-          TopLeft="745,155.8">
+          TopLeft="747,155.8">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="103,0"
+              EndConnector="101,0"
               Start="0,0"
-              End="95.5,0">
+              End="93.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="95.5,0" />
+                    End="93.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6890,7 +7141,7 @@ ORDER BY ID</property>
     design-time-name="Package\Sequence Container 1\DFT_To_Copy_FormDesignMapping">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="232,41.6"
           Id="Package\Sequence Container 1\DFT_To_Copy_FormDesignMapping\OLEDB_FormDesignMappingDST"
@@ -6918,7 +7169,9 @@ ORDER BY ID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6949,7 +7202,7 @@ ORDER BY ID</property>
     design-time-name="Package\Sequence Container 1\DFT_To_Copy_FormDesignType">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="215.2,41.6"
           Id="Package\Sequence Container 1\DFT_To_Copy_FormDesignType\OLEDB_FormDesignTypeDST"
@@ -6977,7 +7230,9 @@ ORDER BY ID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -7011,26 +7266,26 @@ ORDER BY ID</property>
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="226.4,41.6"
-          Id="Package\Sequence Container 1\DFT_To_Copy_FormDesignVersion\OLEDB_FormDesignVersionDST"
-          TopLeft="843.5,114.5" />
+          Id="Package\Sequence Container 1\DFT_To_Copy_FormDesignVersion\OLEDB_FormDesignVersionSRC"
+          TopLeft="526.28571427355,116" />
         <NodeLayout
           Size="226.4,41.6"
-          Id="Package\Sequence Container 1\DFT_To_Copy_FormDesignVersion\OLEDB_FormDesignVersionSRC"
-          TopLeft="527,116" />
+          Id="Package\Sequence Container 1\DFT_To_Copy_FormDesignVersion\OLEDB_FormDesignVersionDST"
+          TopLeft="843.5,114.5" />
         <EdgeLayout
           Id="Package\Sequence Container 1\DFT_To_Copy_FormDesignVersion.Paths[OLE DB Source Output]"
-          TopLeft="753.4,136.05">
+          TopLeft="752.68571427355,136.05">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="90.1,0"
+              EndConnector="90.81428572645,0"
               Start="0,0"
-              End="82.6,0">
+              End="83.31428572645,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="82.6,0" />
+                    End="83.31428572645,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

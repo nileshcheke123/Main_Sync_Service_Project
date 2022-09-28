@@ -58,9 +58,9 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">( select top 1 FormID from UI.FormDesign ORDER BY FormID DESC )</SSIS:Property>
+        SSIS:Name="Value">4371</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="DataType">18</SSIS:Property>
+        SSIS:Name="DataType">9</SSIS:Property>
     </SSIS:Properties>
   </SSIS:Parameter>
   <SSIS:Parameter
@@ -79,7 +79,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">0</SSIS:Property>
+        SSIS:Name="Value">4381</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">9</SSIS:Property>
     </SSIS:Properties>
