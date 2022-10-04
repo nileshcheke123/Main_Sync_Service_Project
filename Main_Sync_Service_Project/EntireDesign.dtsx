@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="EntireDesign"
   DTS:PackageType="5"
-  DTS:VersionBuild="327"
-  DTS:VersionGUID="{5BA18E38-B410-48AD-9C5B-43E972CC9A6F}">
+  DTS:VersionBuild="335"
+  DTS:VersionGUID="{977BB181-D67F-4DF7-8E7C-ABA4BACEAED1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -591,7 +591,7 @@ ORDER BY ID</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{2AE1A09A-C445-43E4-8576-5C73E2BAA904}"
+          SQLTask:Connection="{7788E99E-421E-433E-B3D9-9E2A99E7271B}"
           SQLTask:SqlStatementSource="exec [Sync].[Get_FolderId] 4373"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
@@ -629,7 +629,7 @@ ORDER BY ID</property>
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="EST_TO_Update_SchemaUpdateTracker_Table"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -656,12 +656,12 @@ ORDER BY ID</property>
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="EST_SP_ToAddKeyConstraints"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{2AE1A09A-C445-43E4-8576-5C73E2BAA904}"
-              SQLTask:SqlStatementSource="EXEC [dbo].[SP_AddKeyConstraint]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="ALTER TABLE [Fldr].[FormInstance] WITH NOCHECK ADD CONSTRAINT FK_FormInstance_FormDesignVersion FOREIGN KEY (FormDesignVersionID) REFERENCES UI.FormDesignVersion(FormDesignVersionID);&#xA;&#xA;ALTER TABLE [Fldr].[Folder] WITH NOCHECK ADD CONSTRAINT FK__Folder__FormDesi__15DA3E5D FOREIGN KEY (FormDesignGroupId) REFERENCES UI.FormDesignGroup(FormDesignGroupID)&#xA;&#xA;ALTER TABLE [UI].[FormDesignGroupMapping] WITH NOCHECK ADD CONSTRAINT FK_FormDesignGroupMapping_FormDesignGroup FOREIGN KEY (FormDesignGroupID) REFERENCES UI.FormDesignGroup(FormDesignGroupID);&#xA;&#xA;ALTER TABLE  [Fldr].[FormInstance] WITH NOCHECK ADD CONSTRAINT FK_FormInstance_FormDesign  FOREIGN KEY (FormDesignID) REFERENCES [UI].[FormDesign] (FormID);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -672,7 +672,7 @@ ORDER BY ID</property>
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="EST_ToDeleteDesign"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -688,12 +688,12 @@ ORDER BY ID</property>
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="EST_To_SP_ToRemoveKeyConstraint"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{2AE1A09A-C445-43E4-8576-5C73E2BAA904}"
-              SQLTask:SqlStatementSource="EXEC [dbo].[SP_ToRemoveKeyConstraint]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="ALTER TABLE [Fldr].[FormInstance] DROP CONSTRAINT FK_FormInstance_FormDesignVersion;&#xA;&#xA;ALTER TABLE [Fldr].[Folder] DROP CONSTRAINT FK__Folder__FormDesi__15DA3E5D;&#xA;&#xA;ALTER TABLE [UI].[FormDesignGroupMapping] DROP CONSTRAINT FK_FormDesignGroupMapping_FormDesignGroup;&#xA;&#xA;ALTER TABLE [Fldr].[FormInstance] DROP CONSTRAINT FK_FormInstance_FormDesign;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -6271,7 +6271,7 @@ ORDER BY ID</property>
           PanelSize="280.8,314.4"
           Size="280.8,357.6"
           Id="Package\Sequence Container"
-          TopLeft="226.683677329789,322.81513057778" />
+          TopLeft="222.602044607218,317.352945627225" />
         <NodeLayout
           Size="219.2,41.6"
           Id="Package\Sequence Container 1\DFT_To_Copy_DocumentRule"
@@ -6649,7 +6649,7 @@ ORDER BY ID</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="96.3293983386236,-22,16,16"
+              BoundingBox="96.3293983386235,-22,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -6666,17 +6666,17 @@ ORDER BY ID</property>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="59.8026324394625,0" />
+                    End="59.8026324394623,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="59.8026324394625,0"
-                    Point2="63.8026324394625,0"
-                    Point3="63.8026324394625,4" />
+                    Point1="59.8026324394623,0"
+                    Point2="63.8026324394623,0"
+                    Point3="63.8026324394623,4" />
                   <mssgle:LineSegment
-                    End="63.8026324394625,78.7784355927233" />
+                    End="63.8026324394623,78.7784355927233" />
                   <mssgle:CubicBezierSegment
-                    Point1="63.8026324394625,78.7784355927233"
-                    Point2="63.8026324394625,82.7784355927233"
-                    Point3="67.8026324394625,82.7784355927233" />
+                    Point1="63.8026324394623,78.7784355927233"
+                    Point2="63.8026324394623,82.7784355927233"
+                    Point3="67.8026324394623,82.7784355927233" />
                   <mssgle:LineSegment
                     End="151.472518885156,82.7784355927233" />
                 </mssgle:SegmentCollection>
@@ -6685,7 +6685,7 @@ ORDER BY ID</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="55.8026324394625,-22,16,16"
+              BoundingBox="55.8026324394623,-22,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -6781,25 +6781,25 @@ ORDER BY ID</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 14]"
-          TopLeft="364.911909079188,164.226052139952">
+          TopLeft="362.871092717902,164.226052139952">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,158.589078437828"
+              EndConnector="0,153.126893487273"
               Start="0,0"
-              End="0,151.089078437828">
+              End="0,145.626893487273">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,151.089078437828" />
+                    End="0,145.626893487273" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-8,67.544539218914,16,16"
+              BoundingBox="-8,64.8134467436366,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -6816,17 +6816,17 @@ ORDER BY ID</property>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="43.0226402206372,0" />
+                    End="43.022640220637,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="43.0226402206372,0"
-                    Point2="47.0226402206372,0"
-                    Point3="47.0226402206372,4" />
+                    Point1="43.022640220637,0"
+                    Point2="47.022640220637,0"
+                    Point3="47.022640220637,4" />
                   <mssgle:LineSegment
-                    End="47.0226402206372,121.050988500039" />
+                    End="47.022640220637,121.050988500039" />
                   <mssgle:CubicBezierSegment
-                    Point1="47.0226402206372,121.050988500039"
-                    Point2="47.0226402206372,125.050988500039"
-                    Point3="51.0226402206372,125.050988500039" />
+                    Point1="47.022640220637,121.050988500039"
+                    Point2="47.022640220637,125.050988500039"
+                    Point3="51.022640220637,125.050988500039" />
                   <mssgle:LineSegment
                     End="109.662995862246,125.050988500039" />
                 </mssgle:SegmentCollection>
@@ -6835,7 +6835,7 @@ ORDER BY ID</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="39.0226402206372,-22,16,16"
+              BoundingBox="39.022640220637,-22,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
