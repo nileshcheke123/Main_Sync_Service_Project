@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="23"
-  DTS:VersionGUID="{DC303780-FAAA-4127-B671-A030C064A68A}">
+  DTS:VersionBuild="25"
+  DTS:VersionGUID="{A7071068-BC93-40E5-9A58-091C220F4DEB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -37,7 +37,7 @@
       DTS:ObjectName="DocumentRuleQuery">
       <DTS:VariableValue
         DTS:DataType="8">select * from ui.DocumentRule where 
-DocumentRuleID = 12371and FormDesignId = 4411</DTS:VariableValue>
+DocumentRuleID = 0and FormDesignId = 4373</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -68,7 +68,7 @@ DocumentRuleID = 12371and FormDesignId = 4411</DTS:VariableValue>
       DTS:Namespace="User"
       DTS:ObjectName="SP_DeleteDRIDER">
       <DTS:VariableValue
-        DTS:DataType="8">exec [sync].[ExistDoctRuleIdExpRule] 12371,4411</DTS:VariableValue>
+        DTS:DataType="8">exec [sync].[ExistDoctRuleIdExpRule] 0,4373</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
@@ -310,8 +310,8 @@ DocumentRuleID = 12371and FormDesignId = 4411</DTS:VariableValue>
               <connections>
                 <connection
                   refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Connections[OleDbConnection]"
-                  connectionManagerID="{7788E99E-421E-433E-B3D9-9E2A99E7271B}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[AZ-VDI-D1-244.eBS4_INT_QA2.sa1]"
+                  connectionManagerID="{48AFC83C-D87F-48C5-8E08-DD8ABDB3A993}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AZ-VDI-D1-262.eBS4_INT_QA2.sa]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -888,8 +888,8 @@ DocumentRuleID = 12363 and FormDesignId = 4311</property>
               <connections>
                 <connection
                   refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Connections[OleDbConnection]"
-                  connectionManagerID="{7788E99E-421E-433E-B3D9-9E2A99E7271B}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[AZ-VDI-D1-244.eBS4_INT_QA2.sa1]"
+                  connectionManagerID="{48AFC83C-D87F-48C5-8E08-DD8ABDB3A993}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AZ-VDI-D1-262.eBS4_INT_QA2.sa]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1525,7 +1525,7 @@ DocumentRuleID = 12363 and FormDesignId = 4311</property>
     design-time-name="Package\DFT_DocRuleEventMap">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="250.4,41.6"
           Id="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC"
@@ -1553,9 +1553,7 @@ DocumentRuleID = 12363 and FormDesignId = 4311</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="44.05,5,16,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
