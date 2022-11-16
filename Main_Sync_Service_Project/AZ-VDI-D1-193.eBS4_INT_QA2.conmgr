@@ -1,16 +1,12 @@
 ﻿<?xml version="1.0"?>
 <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:ObjectName="AZ-VDI-D1-193.eBS4_INT_QA2"
-  DTS:DTSID="{2AE1A09A-C445-43E4-8576-5C73E2BAA904}"
+  DTS:DTSID="{32338E53-A6E9-4EFA-890D-993D7553F4FB}"
   DTS:CreationName="OLEDB">
   <DTS:ObjectData>
     <DTS:ConnectionManager
       DTS:ConnectRetryCount="1"
       DTS:ConnectRetryInterval="5"
-      DTS:ConnectionString="Data Source=AZ-VDI-D1-193;User ID=sa;Initial Catalog=eBS4_INT_QA2;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
-      <DTS:Password
-        DTS:Name="Password"
-        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA3E/1VB7sFUC6I+VpBDQ+MwAAAAACAAAAAAADZgAAwAAAABAAAADJIeQuWlnlkJtJCCUMZD+qAAAAAASAAACgAAAAEAAAAKltTTAoXzsEkyWaaWisRcd4AAAAzYe5xIRUEVodsECVXggD/Svhk+CubfK3T2BK9iKBN4s1Knxh0P6BUpotx2ClH9YTVc8x+naFA6pZXo2mBhKpz55CC1rUmPf179nM2ecY/DdRBZWHLIZmJg5VKhQsjbQ9Im+NNbL+sKV+TDwF2gDUd5ilFjf8FGRcFAAAABLdfpar3zQ90Zr2+JvVzKEz4ym5</DTS:Password>
-    </DTS:ConnectionManager>
+      DTS:ConnectionString="Data Source=AZ-VDI-D1-193;Initial Catalog=eBS4_INT_QA2;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
   </DTS:ObjectData>
 </DTS:ConnectionManager>

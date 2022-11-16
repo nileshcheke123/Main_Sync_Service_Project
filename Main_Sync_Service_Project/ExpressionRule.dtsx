@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="25"
-  DTS:VersionGUID="{A7071068-BC93-40E5-9A58-091C220F4DEB}">
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{F080D6A1-5BD1-49F9-AAF3-C86079BA320A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -37,7 +37,7 @@
       DTS:ObjectName="DocumentRuleQuery">
       <DTS:VariableValue
         DTS:DataType="8">select * from ui.DocumentRule where 
-DocumentRuleID = 0and FormDesignId = 4373</DTS:VariableValue>
+DocumentRuleID = 0and FormDesignId = 4389</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -68,7 +68,7 @@ DocumentRuleID = 0and FormDesignId = 4373</DTS:VariableValue>
       DTS:Namespace="User"
       DTS:ObjectName="SP_DeleteDRIDER">
       <DTS:VariableValue
-        DTS:DataType="8">exec [sync].[ExistDoctRuleIdExpRule] 0,4373</DTS:VariableValue>
+        DTS:DataType="8">exec [sync].[ExistDoctRuleIdExpRule] 0,4389</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
@@ -145,7 +145,7 @@ DocumentRuleID = 0and FormDesignId = 4373</DTS:VariableValue>
               <connections>
                 <connection
                   refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapDST.Connections[OleDbConnection]"
-                  connectionManagerID="{2AE1A09A-C445-43E4-8576-5C73E2BAA904}:external"
+                  connectionManagerID="{32338E53-A6E9-4EFA-890D-993D7553F4FB}:external"
                   connectionManagerRefId="Project.ConnectionManagers[AZ-VDI-D1-193.eBS4_INT_QA2]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
@@ -310,8 +310,8 @@ DocumentRuleID = 0and FormDesignId = 4373</DTS:VariableValue>
               <connections>
                 <connection
                   refId="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC.Connections[OleDbConnection]"
-                  connectionManagerID="{48AFC83C-D87F-48C5-8E08-DD8ABDB3A993}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[AZ-VDI-D1-262.eBS4_INT_QA2.sa]"
+                  connectionManagerID="{32338E53-A6E9-4EFA-890D-993D7553F4FB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AZ-VDI-D1-193.eBS4_INT_QA2]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -557,8 +557,8 @@ DocumentRuleID = 0and FormDesignId = 4373</DTS:VariableValue>
               <connections>
                 <connection
                   refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleDST.Connections[OleDbConnection]"
-                  connectionManagerID="{2AE1A09A-C445-43E4-8576-5C73E2BAA904}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[AZ-VDI-D1-193.eBS4_INT_QA2]"
+                  connectionManagerID="{3314DB19-4FB4-43A1-B4CE-B7B7FD2A80A8}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AZ-VDI-D1-302.eBS4_INT_QA2.sa]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -888,8 +888,8 @@ DocumentRuleID = 12363 and FormDesignId = 4311</property>
               <connections>
                 <connection
                   refId="Package\DFT_To_Copy_DocRule\OLEDB_DocumentRuleSRC.Connections[OleDbConnection]"
-                  connectionManagerID="{48AFC83C-D87F-48C5-8E08-DD8ABDB3A993}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[AZ-VDI-D1-262.eBS4_INT_QA2.sa]"
+                  connectionManagerID="{32338E53-A6E9-4EFA-890D-993D7553F4FB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AZ-VDI-D1-193.eBS4_INT_QA2]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1363,7 +1363,7 @@ DocumentRuleID = 12363 and FormDesignId = 4311</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{2AE1A09A-C445-43E4-8576-5C73E2BAA904}"
+          SQLTask:Connection="{3314DB19-4FB4-43A1-B4CE-B7B7FD2A80A8}"
           SQLTask:SqlStmtSourceType="Variable"
           SQLTask:SqlStatementSource="User::SP_DeleteDRIDER" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
@@ -1380,7 +1380,7 @@ DocumentRuleID = 12363 and FormDesignId = 4311</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{2AE1A09A-C445-43E4-8576-5C73E2BAA904}"
+          SQLTask:Connection="{3314DB19-4FB4-43A1-B4CE-B7B7FD2A80A8}"
           SQLTask:SqlStmtSourceType="Variable"
           SQLTask:SqlStatementSource="User::SP_DeleteDREMID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
