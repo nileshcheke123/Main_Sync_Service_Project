@@ -11,41 +11,32 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="44"
-  DTS:VersionGUID="{CF546B2A-9538-4A87-A222-59BF808C990B}">
+  DTS:VersionBuild="50"
+  DTS:VersionGUID="{AFDD75FB-2283-4373-8880-FBD9CD2AC401}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{7C6B2679-B6AD-4F81-BAF8-094F07A869E5}"
-      DTS:IncludeInDebugDump="6789"
-      DTS:Namespace="User"
-      DTS:ObjectName="IsExist">
-      <DTS:VariableValue
-        DTS:DataType="3">0</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
       DTS:DTSID="{58CC6684-7DB8-45BA-8EEC-E22CA8D6F5DB}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;exec [sync].[SyncUpdateMDMTable] &quot;+(DT_STR,10,1252) @[$Project::FormDesignId]+&quot;, &quot;+(DT_STR,10,1252) @[$Project::FormDesignversionId]"
+      DTS:Expression="&quot;EXEC [sync].[UpdateSchemaUpdateTrackerTable] &quot;+(DT_STR,10,1252) @[$Project::FormDesignId]+&quot;, &quot;+(DT_STR,10,1252) @[$Project::FormDesignversionId]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
-      DTS:ObjectName="SchemaUpdateTracker_SP">
+      DTS:ObjectName="SchemaUpdateTrackerSP">
       <DTS:VariableValue
-        DTS:DataType="8">exec [sync].[SyncUpdateMDMTable] 4391, 4393</DTS:VariableValue>
+        DTS:DataType="8">EXEC [sync].[UpdateSchemaUpdateTrackerTable] 3971, 0</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{EBB3437A-2D28-433C-A0D0-41F3153F15CA}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;update [UI].[SyncService] set QueueStatus = 3 , IsRequeued = 0 where QueueId = &quot; + (DT_STR,10,1252)  @[$Project::QueueId]"
+      DTS:Expression="&quot;UPDATE [sync].[DesignChangeTracker] SET QueueStatus= 3 , IsRequeued = 0 WHERE QueueId = &quot; + (DT_STR,10,1252)  @[$Project::QueueId]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
-      DTS:ObjectName="UpdateQueueStatus">
+      DTS:ObjectName="UpdateQueueStatusSP">
       <DTS:VariableValue
-        DTS:DataType="8">update [UI].[SyncService] set QueueStatus = 3 , IsRequeued = 0 where QueueId = 0</DTS:VariableValue>
+        DTS:DataType="8">UPDATE [sync].[DesignChangeTracker] SET QueueStatus= 3 , IsRequeued = 0 WHERE QueueId = 0</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
@@ -82,24 +73,24 @@
         <SQLTask:SqlTaskData
           SQLTask:Connection="{32338E53-A6E9-4EFA-890D-993D7553F4FB}"
           SQLTask:SqlStmtSourceType="Variable"
-          SQLTask:SqlStatementSource="User::UpdateQueueStatus" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="User::UpdateQueueStatusSP" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\EST_TO_Update_SchemaUpdateTracker_Table"
+      DTS:refId="Package\EST_Update_SchemaUpdateTracker"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{c51ec0de-a1d5-4c34-90b4-eca757331de8}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="EST_TO_Update_SchemaUpdateTracker_Table"
+      DTS:ObjectName="EST_Update_SchemaUpdateTracker"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{3314DB19-4FB4-43A1-B4CE-B7B7FD2A80A8}"
           SQLTask:SqlStmtSourceType="Variable"
-          SQLTask:SqlStatementSource="User::SchemaUpdateTracker_SP" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="User::SchemaUpdateTrackerSP" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -141,7 +132,7 @@
       DTS:From="Package\Expression Rule"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
-      DTS:To="Package\EST_TO_Update_SchemaUpdateTracker_Table" />
+      DTS:To="Package\EST_Update_SchemaUpdateTracker" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
@@ -168,8 +159,8 @@
           Id="Package\Entire Design And Design Version"
           TopLeft="404.455789200767,173.178573857335" />
         <NodeLayout
-          Size="299.2,41.6"
-          Id="Package\EST_TO_Update_SchemaUpdateTracker_Table"
+          Size="248,41.6"
+          Id="Package\EST_Update_SchemaUpdateTracker"
           TopLeft="525.090711890088,377.318958115221" />
         <NodeLayout
           Size="213.6,41.6"
@@ -207,33 +198,33 @@
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="125.526418535662,61.3923054265376"
+              EndConnector="99.9264185356616,61.392305426537"
               Start="0,0"
-              End="125.526418535662,53.8923054265376">
+              End="99.9264185356616,53.892305426537">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20.9386359867386" />
+                    End="0,20.9386359867383" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,20.9386359867386"
-                    Point2="0,24.9386359867386"
-                    Point3="4,24.9386359867386" />
+                    Point1="0,20.9386359867383"
+                    Point2="0,24.9386359867383"
+                    Point3="4,24.9386359867383" />
                   <mssgle:LineSegment
-                    End="121.526418535662,24.9386359867386" />
+                    End="95.9264185356616,24.9386359867383" />
                   <mssgle:CubicBezierSegment
-                    Point1="121.526418535662,24.9386359867386"
-                    Point2="125.526418535662,24.9386359867386"
-                    Point3="125.526418535662,28.9386359867386" />
+                    Point1="95.9264185356616,24.9386359867383"
+                    Point2="99.9264185356616,24.9386359867383"
+                    Point3="99.9264185356616,28.9386359867383" />
                   <mssgle:LineSegment
-                    End="125.526418535662,53.8923054265376" />
+                    End="99.9264185356616,53.892305426537" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="54.763209267831,29.9386359867386,16,16"
+              BoundingBox="41.9632092678308,29.9386359867383,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
