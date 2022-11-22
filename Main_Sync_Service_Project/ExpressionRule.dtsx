@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="33"
-  DTS:VersionGUID="{7B280217-DA12-49A3-941A-514770B765B1}">
+  DTS:VersionBuild="36"
+  DTS:VersionGUID="{6A5D4282-7BB5-4BBF-B0BF-6811FF2BCCC8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -20,13 +20,13 @@
       DTS:CreationName=""
       DTS:DTSID="{7F06BE48-069C-451A-B2E4-388EE724E6D8}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;Delete from ui.DocumentRuleEventMap where DocumentRuleID in (select DocumentRuleID from ui.DocumentRule where DocumentRuleID = &quot; + (DT_STR,10,1252) @[$Project::ExpressionRule] &#xA;+&#xA;&quot;&#xA; Delete from UI.DocumentRule where DocumentRuleID= &quot; + &#xA;(DT_STR,10,1252)  @[$Project::ExpressionRule]"
+      DTS:Expression="&quot;Delete from ui.DocumentRuleEventMap where DocumentRuleID in (select DocumentRuleID from ui.DocumentRule where DocumentRuleID = &quot; + (DT_STR,10,1252) @[$Project::ExpressionRule]+&quot;);&quot; &#xA;+&#xA;&quot;&#xA; Delete from UI.DocumentRule where DocumentRuleID= &quot; + &#xA;(DT_STR,10,1252)  @[$Project::ExpressionRule]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="DeleteDocRuleAndEventMapEntriesQuery">
       <DTS:VariableValue
-        DTS:DataType="8">Delete from ui.DocumentRuleEventMap where DocumentRuleID in (select DocumentRuleID from ui.DocumentRule where DocumentRuleID = 0
- Delete from UI.DocumentRule where DocumentRuleID= 0</DTS:VariableValue>
+        DTS:DataType="8">Delete from ui.DocumentRuleEventMap where DocumentRuleID in (select DocumentRuleID from ui.DocumentRule where DocumentRuleID = 12301);
+ Delete from UI.DocumentRule where DocumentRuleID= 12301</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -37,7 +37,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="DocRuleEventMapQuery">
       <DTS:VariableValue
-        DTS:DataType="8">select * from [UI].DocumentRuleEventMap where DocumentRuleID = 0</DTS:VariableValue>
+        DTS:DataType="8">select * from [UI].DocumentRuleEventMap where DocumentRuleID = 12301</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -49,7 +49,7 @@
       DTS:ObjectName="DocumentRuleQuery">
       <DTS:VariableValue
         DTS:DataType="8">select * from ui.DocumentRule where 
-DocumentRuleID = 0 and FormDesignId = 4391</DTS:VariableValue>
+DocumentRuleID = 12301 and FormDesignId = 2469</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -1464,7 +1464,7 @@ DocumentRuleID = 12363 and FormDesignId = 4311</property>
     design-time-name="Package\DFT_DocRuleEventMap">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="250.4,41.6"
           Id="Package\DFT_DocRuleEventMap\OLEDB_DocumentRuleEventMapSRC"
@@ -1492,9 +1492,7 @@ DocumentRuleID = 12363 and FormDesignId = 4311</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
