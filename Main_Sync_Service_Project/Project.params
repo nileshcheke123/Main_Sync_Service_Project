@@ -58,7 +58,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">2475</SSIS:Property>
+        SSIS:Name="Value">4399</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">9</SSIS:Property>
     </SSIS:Properties>
@@ -79,7 +79,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">3088</SSIS:Property>
+        SSIS:Name="Value">4416</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">9</SSIS:Property>
     </SSIS:Properties>
@@ -100,7 +100,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">0</SSIS:Property>
+        SSIS:Name="Value">12588</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">9</SSIS:Property>
     </SSIS:Properties>
