@@ -7,6 +7,6 @@
     <DTS:ConnectionManager
       DTS:ConnectRetryCount="1"
       DTS:ConnectRetryInterval="5"
-      DTS:ConnectionString="Data Source=AZ-VDI-D1-193;Initial Catalog=eBS4_INT_QA2;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      DTS:ConnectionString="Data Source=AZ-VDI-D1-262;Initial Catalog=eBS4_INT_QA2;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
   </DTS:ObjectData>
 </DTS:ConnectionManager>

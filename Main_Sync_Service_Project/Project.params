@@ -16,7 +16,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">Entire Design</SSIS:Property>
+        SSIS:Name="Value">Design Version</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
@@ -58,7 +58,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">4391</SSIS:Property>
+        SSIS:Name="Value">4399</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">9</SSIS:Property>
     </SSIS:Properties>
@@ -79,7 +79,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">4393</SSIS:Property>
+        SSIS:Name="Value">4416</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">9</SSIS:Property>
     </SSIS:Properties>
@@ -100,28 +100,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">0</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="DataType">9</SSIS:Property>
-    </SSIS:Properties>
-  </SSIS:Parameter>
-  <SSIS:Parameter
-    SSIS:Name="TID">
-    <SSIS:Properties>
-      <SSIS:Property
-        SSIS:Name="ID">{a25fc6da-ab83-4601-a566-4eea95a54a8e}</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="CreationName"></SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="Description"></SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="Required">0</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="Sensitive">0</SSIS:Property>
-      <SSIS:Property
-        SSIS:Name="Value">0</SSIS:Property>
+        SSIS:Name="Value">12588</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">9</SSIS:Property>
     </SSIS:Properties>
@@ -205,7 +184,7 @@
       <SSIS:Property
         SSIS:Name="Sensitive">0</SSIS:Property>
       <SSIS:Property
-        SSIS:Name="Value">Data Source=AZ-VDI-D1-302;User ID=sa;Password = sa@123 ; Initial Catalog=eBS4_INT_QA2;Provider=SQLNCLI11.1;Auto Translate=False;</SSIS:Property>
+        SSIS:Name="Value">Data Source=AZ-VDI-D1-193;User ID=sa;Password = sa@1234; Initial Catalog=eBS4_INT_QA2;Provider=SQLNCLI11.1;Auto Translate=False;</SSIS:Property>
       <SSIS:Property
         SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>

@@ -15,7 +15,7 @@
       <SSIS:Project SSIS:ProtectionLevel="EncryptSensitiveWithUserKey" xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
         <SSIS:Properties>
           <SSIS:Property SSIS:Name="ID">{bb6fa01d-8aa0-4820-8c71-093e21e9f36a}</SSIS:Property>
-          <SSIS:Property SSIS:Name="Name">Main_Sync_Service_Project</SSIS:Property>
+          <SSIS:Property SSIS:Name="Name">Sync_Service_Project</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
@@ -26,13 +26,13 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">AZ-VDI-D1-193</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQtVL6FK/xUqB5wf64otXwwAAAAACAAAAAAADZgAAwAAAABAAAAAuLFjtk3uiTE+fzCfvld42AAAAAASAAACgAAAAEAAAADdf1SRi9ucYg0FUSNP4MT6IAAAAWxjw+CvQxvc10GwrMrut8zl9fxdQP6Cy4Uq3YdwywN1e6KxV3JFl2a8Ni2t/ecxunfQ2dbWO2Ek/HTDn2tggOQUNAtGJNcXfSMCkZ3IDS+kZcaarWsDxCNuw4PsQm6/5YrVqq66p6VYDpwyfkZh4KHbE9NU5D7IYDPKQ5fJw6AN+wkNnZ68jthQAAABTXzBa5IcOQ8VO0Sq3M1izDNd0Jw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA3E/1VB7sFUC6I+VpBDQ+MwAAAAACAAAAAAADZgAAwAAAABAAAABNWa1xq4ag2m08Y76dVZiIAAAAAASAAACgAAAAEAAAAHklwbiTtMNQpiHA47eGRVWIAAAAY10qzMpS1q68lRfeIyAdCCyfS2YA5XAPVBLlB+x6o943q4qaD1cNdwtpUJhPIvcMA3nvFutDTxwCpNA1zOiMPSAeiGoRat+IzvCFfGH1NLQ0eiParycEz3MCg1xjXvz2cORCGMdRlVoM/dqDEcoy9IEDG7sXKYq3t++c36d8LpxShaAI31OrVxQAAAAVfOIWayrw11VS0tmm0eHFeGiBoQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
           <SSIS:Package SSIS:Name="ExpressionRule.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="SyncService.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Entire Design And Design Version.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="MasterPackage.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="AZ-VDI-D1-302.eBS4_INT_QA2.sa.conmgr" />
@@ -154,7 +154,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">AZ-VDI-D1-302</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">AZ-VDI-D1-193</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -199,7 +199,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=AZ-VDI-D1-193;Initial Catalog=eBS4_INT_QA2;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=AZ-VDI-D1-262;User ID=sa;Initial Catalog=eBS4_INT_QA2;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -303,7 +303,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">AZ-VDI-D1-193</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">AZ-VDI-D1-262</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -318,6 +318,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">sa</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -329,27 +330,10 @@
                 <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">26</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">33</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{F080D6A1-5BD1-49F9-AAF3-C86079BA320A}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="SyncService.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{C68DF97D-5737-4D9A-AE28-7B317A1E7217}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Package</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">36</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{B0123F26-E891-48DB-A0DB-62AB341D6553}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{7B280217-DA12-49A3-941A-514770B765B1}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -363,10 +347,10 @@
                 <SSIS:Property SSIS:Name="Name">EntireDesign</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">362</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">466</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{92253BC9-6949-4617-983D-5672ECE32016}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{D7ECFDCD-3BA6-40C9-9B15-5CFAE9BABF42}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -399,7 +383,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">C:\Users\shivani.shinde\source\repos\Folder_Copy_Script\Folder_Copy.sql</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">E:\Folder_Copy.sql</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -474,7 +458,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">C:\Users\shivani.shinde\source\repos\Folder_Copy_Script\Folder_Copy.sql</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">E:\Folder_Copy.sql</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -601,6 +585,23 @@
                   </SSIS:Properties>
                 </SSIS:Parameter>
               </SSIS:Parameters>
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="MasterPackage.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{C68DF97D-5737-4D9A-AE28-7B317A1E7217}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">50</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{AFDD75FB-2283-4373-8880-FBD9CD2AC401}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
             </SSIS:PackageMetaData>
           </SSIS:PackageInfo>
         </SSIS:DeploymentInfo>
